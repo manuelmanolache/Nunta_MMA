@@ -29,7 +29,7 @@ function initializeSplashScreen() {
     splashImage.addEventListener('error', function() {
         if (fallbackIndex < fallbackImages.length) {
             splashImage.src = fallbackImages[fallbackIndex];
-            fallbackIndex += 1;
+            fallbackIndex++;
             return;
         }
 

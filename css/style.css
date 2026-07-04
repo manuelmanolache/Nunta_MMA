@@ -14,6 +14,7 @@
     --dark-color: #2c3e50;
     --light-color: #ecf0f1;
     --text-color: #333;
+    --failed-splash-overlay: 0.82;
     --border-radius: 10px;
     --transition: all 0.3s ease;
 }
@@ -97,7 +98,7 @@ body {
 }
 
 .splash-screen.image-failed .splash-overlay {
-    background: rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, var(--failed-splash-overlay));
     max-width: min(90vw, 480px);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }

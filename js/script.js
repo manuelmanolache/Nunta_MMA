@@ -12,6 +12,19 @@ function enterWebsite() {
     
     // Optionally scroll to top
     window.scrollTo(0, 0);
+
+    // IntersectionObserver does not re-fire for elements whose parent transitions
+    // from display:none to visible, so manually reveal any sections that are
+    // already in the viewport after the splash screen is dismissed.
+    requestAnimationFrame(function() {
+        mainContent.querySelectorAll('section').forEach(function(section) {
+            var rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                section.style.opacity = '1';
+                section.style.transform = 'translateY(0)';
+            }
+        });
+    });
 }
 
 // Allow Enter key to proceed from splash screen

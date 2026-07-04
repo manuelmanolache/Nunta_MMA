@@ -6,12 +6,48 @@ function isInViewport(sectionRect) {
     return sectionRect.top < window.innerHeight && sectionRect.bottom > 0;
 }
 
+function initializeSplashScreen() {
+    const splashScreen = document.getElementById('splashScreen');
+    const splashImage = document.getElementById('splash-photo');
+    const fallbackImages = ['images/invitation.jpg', 'images/couple.jpg'];
+    let fallbackIndex = 0;
+
+    if (!splashScreen || !splashImage) {
+        return;
+    }
+
+    function showFallbackState() {
+        splashScreen.classList.add('image-failed');
+    }
+
+    splashImage.addEventListener('load', function() {
+        if (splashImage.naturalWidth > 0) {
+            splashScreen.classList.remove('image-failed');
+        }
+    });
+
+    splashImage.addEventListener('error', function() {
+        if (fallbackIndex < fallbackImages.length) {
+            splashImage.src = fallbackImages[fallbackIndex];
+            fallbackIndex++;
+            return;
+        }
+
+        showFallbackState();
+    });
+
+    if (splashImage.complete && splashImage.naturalWidth === 0) {
+        showFallbackState();
+    }
+}
+
 function enterWebsite() {
     const splashScreen = document.getElementById('splashScreen');
     const mainContent = document.getElementById('mainContent');
     
     // Add animation classes
     splashScreen.classList.add('hidden');
+    splashScreen.classList.remove('active');
     mainContent.classList.remove('hidden');
     
     // Optionally scroll to top
@@ -35,7 +71,8 @@ function enterWebsite() {
 document.addEventListener('keydown', function(event) {
     const splashScreen = document.getElementById('splashScreen');
     if (splashScreen && splashScreen.classList.contains('active')) {
-        if (event.key === 'Enter') {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
             enterWebsite();
         }
     }
@@ -46,6 +83,8 @@ document.addEventListener('keydown', function(event) {
 // ============================================
 
 document.addEventListener('DOMContentLoaded', function() {
+    initializeSplashScreen();
+
     // Check if form exists before adding listener
     const rsvpForm = document.getElementById('rsvpForm');
     if (rsvpForm) {

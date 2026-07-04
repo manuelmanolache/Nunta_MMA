@@ -8,9 +8,9 @@
 </head>
 <body>
     <!-- Opening Page (Splash Screen) -->
-    <div id="splashScreen" class="splash-screen active" onclick="enterWebsite()">
+    <div id="splashScreen" class="splash-screen active" onclick="enterWebsite()" tabindex="0" role="button" aria-label="Deschide invitatia">
         <div class="splash-content">
-            <img id="splash-photo" src="images/intro.jpg" alt="Welcome to Our Wedding" class="splash-image">
+            <img id="splash-photo" src="images/intro.jpg" alt="Welcome to Our Wedding" class="splash-image" loading="eager" fetchpriority="high">
             <div class="splash-overlay">
                 <p>Apasa pentru a deschide invitatia</p>
             </div>

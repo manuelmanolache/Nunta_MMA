@@ -14,6 +14,11 @@
     --dark-color: #2c3e50;
     --light-color: #ecf0f1;
     --text-color: #333;
+    --splash-failed-overlay-opacity: 0.8;
+    --phone-photo-width: min(100vw, 430px);
+    --phone-photo-height: min(100vh, 860px);
+    --phone-photo-landscape-height: min(100vh, 600px);
+    --gallery-photo-ratio: 2 / 3;
     --border-radius: 10px;
     --transition: all 0.3s ease;
 }
@@ -50,7 +55,7 @@ body {
     width: 100%;
     height: 100vh;
     z-index: 2000;
-    background: black;
+    background: linear-gradient(180deg, #f8f1e7 0%, #f0e0ca 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,30 +71,42 @@ body {
 
 .splash-content {
     position: relative;
-    width: 100%;
-    height: 100%;
+    width: var(--phone-photo-width);
+    height: var(--phone-photo-height);
+    max-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .splash-image {
     position: absolute;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     z-index: 1;
+}
+
+.splash-screen.image-failed .splash-image {
+    display: none;
 }
 
 .splash-overlay {
     position: relative;
     z-index: 2;
     text-align: center;
-    background: transparent;
-    padding: 0;
-    border-radius: 0;
-    backdrop-filter: none;
+    background: rgba(44, 62, 80, 0.25);
+    padding: 1rem 1.5rem;
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(3px);
     animation: fadeInUp 1s ease-out;
+}
+
+.splash-screen.image-failed .splash-overlay {
+    background: rgba(255, 255, 255, var(--splash-failed-overlay-opacity));
+    max-width: min(90vw, 480px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
 }
 
 @keyframes fadeInUp {
@@ -109,6 +126,11 @@ body {
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
     margin: 0;
     font-weight: bold;
+}
+
+.splash-screen.image-failed .splash-overlay p {
+    color: var(--dark-color);
+    text-shadow: none;
 }
 
 /* ============================================
@@ -133,7 +155,7 @@ body {
 
 .invitation {
     padding: 0;
-    background: white;
+    background: var(--light-color);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -145,8 +167,10 @@ body {
     grid-template-columns: 1fr;
     gap: 0;
     align-items: center;
-    width: 100%;
-    height: 100vh;
+    width: var(--phone-photo-width);
+    height: var(--phone-photo-height);
+    max-height: 100vh;
+    margin: 0 auto;
 }
 
 .invitation-image {
@@ -155,7 +179,7 @@ body {
     border-radius: 0;
     box-shadow: none;
     transition: var(--transition);
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .invitation-image:hover {
@@ -181,8 +205,10 @@ body {
     grid-template-columns: 1fr;
     gap: 0;
     align-items: center;
-    width: 100%;
-    height: 100vh;
+    width: var(--phone-photo-width);
+    height: var(--phone-photo-height);
+    max-height: 100vh;
+    margin: 0 auto;
 }
 
 .couple-image {
@@ -191,7 +217,7 @@ body {
     border-radius: 0;
     box-shadow: none;
     transition: var(--transition);
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .couple-image:hover {
@@ -228,14 +254,17 @@ body {
     overflow: hidden;
     border-radius: var(--border-radius);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    height: 300px;
+    aspect-ratio: var(--gallery-photo-ratio);
+    max-width: var(--phone-photo-width);
+    margin: 0 auto;
+    background: white;
     transition: var(--transition);
 }
 
 .gallery-item img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     transition: var(--transition);
 }
 
@@ -388,18 +417,21 @@ body {
 
 .footer {
     position: relative;
-    height: 400px;
+    height: min(70vh, 860px);
     overflow: hidden;
     display: flex;
     align-items: flex-end;
     justify-content: center;
+    padding: 0 1rem;
 }
 
 .footer-image {
     position: absolute;
-    width: 100%;
+    width: var(--phone-photo-width);
     height: 100%;
-    object-fit: cover;
+    left: 50%;
+    transform: translateX(-50%);
+    object-fit: contain;
     z-index: 1;
 }
 
@@ -431,16 +463,8 @@ body {
         min-height: 100vh;
     }
 
-    .invitation-content {
-        height: 100vh;
-    }
-
     .about {
         min-height: 100vh;
-    }
-
-    .about-content {
-        height: 100vh;
     }
 
     h2 {
@@ -451,12 +475,8 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .gallery-item {
-        height: 250px;
-    }
-
     .footer {
-        height: 300px;
+        height: min(60vh, 520px);
     }
 }
 
@@ -482,26 +502,9 @@ body {
         padding: 0;
     }
 
-    .invitation-content {
-        height: 100vh;
-        gap: 0;
-    }
-
-    .invitation-image {
-        height: 100vh;
-    }
-
     .about {
         min-height: 100vh;
         padding: 0;
-    }
-
-    .about-content {
-        height: 100vh;
-    }
-
-    .couple-image {
-        height: 100vh;
     }
 
     h2 {
@@ -513,12 +516,8 @@ body {
         padding: 1.5rem;
     }
 
-    .gallery-item {
-        height: 200px;
-    }
-
     .footer {
-        height: 250px;
+        height: min(55vh, 420px);
     }
 }
 
@@ -531,14 +530,9 @@ body {
         height: 100vh;
     }
 
+    .splash-content,
     .invitation-content,
     .about-content {
-        height: auto;
-        min-height: 100vh;
-    }
-
-    .invitation-image,
-    .couple-image {
-        height: 100vh;
+        height: var(--phone-photo-landscape-height);
     }
 }

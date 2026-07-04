@@ -8,13 +8,11 @@
 </head>
 <body>
     <!-- Opening Page (Splash Screen) -->
-    <div id="splashScreen" class="splash-screen active">
+    <div id="splashScreen" class="splash-screen active" onclick="enterWebsite()">
         <div class="splash-content">
             <img id="splash-photo" src="images/intro.jpg" alt="Welcome to Our Wedding" class="splash-image">
             <div class="splash-overlay">
-                <h1>We're Getting Married!</h1>
-                <p>Join us on our special day</p>
-                <button class="btn-enter" onclick="enterWebsite()">Click to Enter</button>
+                <p>Apasa pentru a deschide invitatia</p>
             </div>
         </div>
     </div>
@@ -24,19 +22,40 @@
         
         <!-- Invitation Section -->
         <section id="invitation" class="invitation">
+            <div class="invitation-content">
+                <img id="invitation-photo" src="images/invitation.jpg" alt="Wedding Invitation" class="invitation-image">
+            </div>
+        </section>
+
+        <!-- About Us Section with Our Photos -->
+        <section id="about" class="about">
+            <div class="about-content">
+                <img id="couple-photo" src="images/couple.jpg" alt="About Us" class="couple-image">
+            </div>
+        </section>
+
+        <!-- Photo Gallery Section -->
+        <section id="gallery" class="gallery">
             <div class="container">
-                <h2>You're Invited!</h2>
-                <div class="invitation-content">
-                    <img id="invitation-photo" src="images/invitation.jpg" alt="Wedding Invitation" class="invitation-image">
-                    <div class="invitation-details">
-                        <h3>Our Wedding Day</h3>
-                        <p><strong>Date:</strong> <span id="wedding-date">Coming Soon</span></p>
-                        <p><strong>Time:</strong> <span id="wedding-time">Coming Soon</span></p>
-                        <p><strong>Location:</strong> <span id="wedding-location">Coming Soon</span></p>
-                        <p class="invitation-message">
-                            We would be honored to have you celebrate with us. 
-                            Please RSVP by the date specified on the invitation.
-                        </p>
+                <h2>Our Moments</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/photo1.jpg" alt="Our Moment 1">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/photo2.jpg" alt="Our Moment 2">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/photo3.jpg" alt="Our Moment 3">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/photo4.jpg" alt="Our Moment 4">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/photo5.jpg" alt="Our Moment 5">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/photo6.jpg" alt="Our Moment 6">
                     </div>
                 </div>
             </div>
@@ -90,55 +109,6 @@
                     <button type="submit" class="btn-submit">Submit RSVP</button>
                 </form>
                 <div id="formMessage" class="form-message"></div>
-            </div>
-        </section>
-
-        <!-- About Us Section with Our Photos -->
-        <section id="about" class="about">
-            <div class="container">
-                <h2>About Us</h2>
-                <div class="about-content">
-                    <div class="about-photo">
-                        <img id="couple-photo" src="images/couple.jpg" alt="About Us" class="couple-image">
-                    </div>
-                    <div class="about-text">
-                        <h3>Our Love Story</h3>
-                        <p>
-                            Every love story is beautiful, and ours is no exception. 
-                            We can't wait to share our special day with the people we love most.
-                        </p>
-                        <p>
-                            We're thrilled to celebrate with you and create memories that will last a lifetime.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Photo Gallery Section -->
-        <section id="gallery" class="gallery">
-            <div class="container">
-                <h2>Our Moments</h2>
-                <div class="gallery-grid">
-                    <div class="gallery-item">
-                        <img src="images/photo1.jpg" alt="Our Moment 1">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/photo2.jpg" alt="Our Moment 2">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/photo3.jpg" alt="Our Moment 3">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/photo4.jpg" alt="Our Moment 4">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/photo5.jpg" alt="Our Moment 5">
-                    </div>
-                    <div class="gallery-item">
-                        <img src="images/photo6.jpg" alt="Our Moment 6">
-                    </div>
-                </div>
             </div>
         </section>
 

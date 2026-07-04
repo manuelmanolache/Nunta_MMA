@@ -252,7 +252,7 @@ body {
     overflow: hidden;
     border-radius: var(--border-radius);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    aspect-ratio: 2 / 3; /* Match the portrait source photos, not the taller phone frame */
+    aspect-ratio: 2 / 3; /* Match the 1024x1536-style portrait source photos */
     max-width: var(--phone-photo-width);
     margin: 0 auto;
     background: white;
@@ -429,7 +429,7 @@ body {
     height: 100%;
     left: 50%;
     transform: translateX(-50%);
-    object-fit: cover;
+    object-fit: contain;
     z-index: 1;
 }
 

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Wedding - Nunta MMA</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Opening Page (Splash Screen) -->
+    <div id="splashScreen" class="splash-screen active" onclick="enterWebsite()">
+        <div class="splash-content">
+            <img id="splash-photo" src="images/intro.jpg" alt="Welcome to Our Wedding" class="splash-image">
+            <div class="splash-overlay">
+                <p>Apasa pentru a deschide invitatia</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Website Content (Hidden Initially) -->
+    <div id="mainContent" class="main-content hidden">
+        
+        <!-- Invitation Section -->
+        <section id="invitation" class="invitation">
+            <div class="invitation-content">
+                <img id="invitation-photo" src="images/invitation.jpg" alt="Wedding Invitation" class="invitation-image">
+            </div>
+        </section>
+
+        <!-- About Us Section with Our Photos -->
+        <section id="about" class="about">
+            <div class="about-content">
+                <img id="couple-photo" src="images/couple.jpg" alt="About Us" class="couple-image">
+            </div>
+        </section>
+
+        <!-- Photo Gallery Section -->
+        <section id="gallery" class="gallery">
+            <div class="container">
+                <h2>Our Moments</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/photo.jpg" alt="Our Moment 1">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/intro.jpg" alt="Our Moment 2">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/invitation.jpg" alt="Our Moment 3">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/couple.jpg" alt="Our Moment 4">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/lastpage.jpg" alt="Our Moment 5">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP Form Section -->
+        <section id="rsvp" class="rsvp-section">
+            <div class="container">
+                <h2>RSVP</h2>
+                <form class="rsvp-form" id="rsvpForm">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="attending">Will you attend? *</label>
+                        <select id="attending" name="attending" required>
+                            <option value="">-- Select --</option>
+                            <option value="yes">Yes, I'll be there! 🎉</option>
+                            <option value="no">Sorry, I can't make it</option>
+                            <option value="maybe">Maybe</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="guests">Number of Guests (including yourself) *</label>
+                        <input type="number" id="guests" name="guests" min="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dietary">Dietary Restrictions</label>
+                        <input type="text" id="dietary" name="dietary" placeholder="e.g., Vegetarian, Vegan, Allergies...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Special Message or Request</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Write your message here..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Submit RSVP</button>
+                </form>
+                <div id="formMessage" class="form-message"></div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2>Get in Touch</h2>
+                <div class="contact-info">
+                    <p><strong>Email:</strong> <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+                    <p><strong>Phone:</strong> <a href="tel:+40123456789">+40 123 456 789</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer with Last Page Photo -->
+        <footer class="footer">
+            <img id="footer-photo" src="images/lastpage.jpg" alt="Wedding Memories" class="footer-image">
+            <div class="footer-content">
+                <p>&copy; 2026 Our Wedding. All rights reserved. 💕</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

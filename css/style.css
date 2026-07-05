@@ -239,7 +239,7 @@ body {
 
 .gallery {
     padding: 60px 0;
-    background: rgba(248, 241, 231, 0.82);
+    background: transparent;
 }
 
 .gallery h2 {
@@ -421,6 +421,7 @@ body {
     text-align: center;
     color: var(--dark-color);
     font-weight: bold;
+    box-shadow: none;
 }
 
 .footer-content h2 {

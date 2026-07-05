@@ -445,6 +445,17 @@ body {
 }
 
 /* ============================================
+   Portrait Phone: solid background instead of image
+   ============================================ */
+
+@media (max-width: 768px) and (orientation: portrait) {
+    body {
+        background-image: none;
+        background-color: #f8f1e7;
+    }
+}
+
+/* ============================================
    Mobile Optimization (Vertical/Portrait)
    ============================================ */
 

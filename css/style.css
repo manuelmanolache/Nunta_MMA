@@ -11,6 +11,7 @@
 :root {
     --primary-color: #c41e3a;      /* Deep rose red */
     --secondary-color: #ffd700;    /* Gold accent */
+    --invitation-green: #155724;
     --dark-color: #2c3e50;
     --light-color: #ecf0f1;
     --text-color: #333;
@@ -297,7 +298,7 @@ body {
 .rsvp-section h2 {
     text-align: center;
     font-size: 2.5rem;
-    color: var(--primary-color);
+    color: var(--invitation-green);
     margin-bottom: 3rem;
 }
 
@@ -318,7 +319,7 @@ body {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 600;
-    color: var(--primary-color);
+    color: var(--invitation-green);
 }
 
 .form-group input,
@@ -426,7 +427,7 @@ body {
 
 .footer-content h2 {
     font-size: 2rem;
-    color: var(--primary-color);
+    color: var(--invitation-green);
     margin-bottom: 1rem;
 }
 
@@ -435,7 +436,7 @@ body {
 }
 
 .footer .contact-info a {
-    color: var(--primary-color);
+    color: var(--invitation-green);
     text-decoration: none;
     transition: var(--transition);
 }

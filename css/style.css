@@ -510,3 +510,53 @@ body {
         height: var(--phone-photo-landscape-height);
     }
 }
+
+/* ============================================
+   QR Code Section
+   ============================================ */
+
+.qr-section {
+    padding: 60px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #fff5f7, #fff);
+}
+
+.qr-section h2 {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.qr-section p {
+    color: var(--dark-color);
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.qr-wrapper {
+    display: inline-block;
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 8px 32px rgba(196, 30, 58, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.qr-wrapper:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(196, 30, 58, 0.25);
+}
+
+.qr-image {
+    width: 220px;
+    height: 220px;
+    display: block;
+}
+
+.qr-url {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    font-style: italic;
+    letter-spacing: 0.5px;
+}

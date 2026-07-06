@@ -9,7 +9,7 @@ function isInViewport(sectionRect) {
 function initializeSplashScreen() {
     const splashScreen = document.getElementById('splashScreen');
     const splashImage = document.getElementById('splash-photo');
-    const fallbackImages = ['images/invitation.jpg', 'images/couple.jpg'];
+    const fallbackImages = ['images/invitation_QR.png', 'images/couple.jpg'];
     let fallbackIndex = 0;
 
     if (!splashScreen || !splashImage) {

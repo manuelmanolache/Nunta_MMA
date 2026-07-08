@@ -14,14 +14,20 @@ function initializeSplashScreen() {
     let fallbackIndex = 0;
     const shouldOpenMainPage = new URLSearchParams(window.location.search).get('view') === 'main';
 
-    if (!splashScreen || !splashImage || !mainContent) {
+    if (!mainContent) {
         return;
     }
 
     if (shouldOpenMainPage) {
-        splashScreen.classList.add('hidden');
-        splashScreen.classList.remove('active');
+        if (splashScreen) {
+            splashScreen.classList.add('hidden');
+            splashScreen.classList.remove('active');
+        }
         mainContent.classList.remove('hidden');
+        return;
+    }
+
+    if (!splashScreen || !splashImage) {
         return;
     }
 

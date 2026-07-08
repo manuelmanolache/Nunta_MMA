@@ -232,7 +232,6 @@ body {
 }
 
 @supports (min-height: 100svh) {
-    .splash-screen,
     .splash-content,
     .main-page,
     .sub-page {

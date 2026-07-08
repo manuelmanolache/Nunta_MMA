@@ -66,7 +66,6 @@ function initializeSplashScreen() {
             enterWebsite();
         }
     });
-    splashScreen.focus();
 }
 
 function enterWebsite() {

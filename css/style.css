@@ -63,6 +63,16 @@ body {
     display: flex;
 }
 
+.splash-screen:hover .enter-text,
+.splash-screen:focus-visible .enter-text {
+    text-decoration: underline;
+}
+
+.splash-screen:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.9);
+    outline-offset: -8px;
+}
+
 .splash-content {
     width: 100%;
     min-height: 100vh;

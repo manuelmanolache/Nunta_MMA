@@ -9,12 +9,19 @@ function isInViewport(sectionRect) {
 function initializeSplashScreen() {
     const splashScreen = document.getElementById('splashScreen');
     const splashImage = document.getElementById('splash-photo');
-    const enterButton = document.getElementById('enterButton');
     const mainContent = document.getElementById('mainContent');
     const fallbackImages = ['images/invitation.jpg', 'images/couple.jpg'];
     let fallbackIndex = 0;
+    const shouldOpenMainPage = new URLSearchParams(window.location.search).get('view') === 'main';
 
     if (!splashScreen || !splashImage || !mainContent) {
+        return;
+    }
+
+    if (shouldOpenMainPage) {
+        splashScreen.classList.add('hidden');
+        splashScreen.classList.remove('active');
+        mainContent.classList.remove('hidden');
         return;
     }
 
@@ -46,15 +53,13 @@ function initializeSplashScreen() {
         showFallbackState();
     }
 
-    if (enterButton) {
-        enterButton.addEventListener('click', enterWebsite);
-        enterButton.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                enterWebsite();
-            }
-        });
-    }
+    splashScreen.addEventListener('click', enterWebsite);
+    splashScreen.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            enterWebsite();
+        }
+    });
 }
 
 function enterWebsite() {
@@ -86,17 +91,6 @@ function enterWebsite() {
         });
     });
 }
-
-// Allow Enter key to proceed from splash screen
-document.addEventListener('keydown', function(event) {
-    const splashScreen = document.getElementById('splashScreen');
-    if (splashScreen && splashScreen.classList.contains('active')) {
-        if (event.key === 'Enter' || event.key === ' ') {
-            event.preventDefault();
-            enterWebsite();
-        }
-    }
-});
 
 // ============================================
 // RSVP Form Handling

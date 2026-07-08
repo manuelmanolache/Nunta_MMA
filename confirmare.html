@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmare</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main class="sub-page">
+        <h1>Confirmare</h1>
+
+        <form class="rsvp-form" id="rsvpForm">
+            <div class="form-group">
+                <label for="name">Nume *</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="attending">Participi? *</label>
+                <select id="attending" name="attending" required>
+                    <option value="">-- Selecteaza --</option>
+                    <option value="yes">Da, particip</option>
+                    <option value="no">Nu pot participa</option>
+                    <option value="maybe">Poate</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn-submit">Trimite</button>
+        </form>
+
+        <a class="back-home" href="index.html">Go to main page</a>
+    </main>
+</body>
+</html>

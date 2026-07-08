@@ -9,530 +9,166 @@
 }
 
 :root {
-    --primary-color: #c41e3a;      /* Deep rose red */
-    --secondary-color: #ffd700;    /* Gold accent */
+    --primary-color: #c41e3a;
+    --secondary-color: #ffd700;
     --invitation-green: #155724;
-    --footer-text-color: #f1dcc0;
-    --dark-color: #2c3e50;
-    --light-color: #ecf0f1;
     --text-color: #333;
-    --splash-failed-overlay-opacity: 0.8;
-    --phone-photo-width: min(100vw, 430px);
-    --phone-photo-height: min(100vh, 860px);
-    --phone-photo-landscape-height: min(100vh, 600px);
-    --gallery-photo-ratio: 2 / 3;
     --border-radius: 10px;
     --transition: all 0.3s ease;
 }
 
-html {
-    scroll-behavior: smooth;
+html,
+body {
+    width: 100%;
+    height: 100%;
 }
 
 body {
     font-family: 'Georgia', serif;
-    line-height: 1.6;
+    line-height: 1.5;
     color: var(--text-color);
     background-color: #f8f1e7;
     background-image: url('../images/photo.jpg');
     background-attachment: fixed;
     background-size: cover;
     background-position: center;
-    margin: 0;
-    padding: 0;
-    width: 100%;
     overflow-x: hidden;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
 /* ============================================
-   Splash Screen (Opening Page) - Mobile First
+   Main page: one-screen, no scroll
    ============================================ */
 
-.splash-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+.main-page {
+    min-height: 100vh;
     height: 100vh;
-    z-index: 2000;
-    background: linear-gradient(180deg, #f8f1e7 0%, #f0e0ca 100%);
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: center;
-    opacity: 1;
-    transition: opacity 0.5s ease;
-    cursor: pointer;
-}
-
-.splash-screen.hidden {
-    opacity: 0;
-    pointer-events: none;
-}
-
-.splash-content {
-    position: relative;
-    width: var(--phone-photo-width);
-    height: var(--phone-photo-height);
-    max-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding: 1rem 1rem 1.5rem;
     overflow: hidden;
 }
 
-.splash-image {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    z-index: 1;
-}
-
-.splash-screen.image-failed .splash-image {
-    display: none;
-}
-
-.splash-overlay {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    background: rgba(44, 62, 80, 0.25);
-    padding: 1rem 1.5rem;
-    border-radius: var(--border-radius);
-    backdrop-filter: blur(3px);
-    animation: fadeInUp 1s ease-out;
-    margin-bottom: 8rem;
-}
-
-.splash-screen.image-failed .splash-overlay {
-    background: rgba(255, 255, 255, var(--splash-failed-overlay-opacity));
-    max-width: min(90vw, 480px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.splash-overlay p {
-    font-size: 1.2rem;
-    color: white;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-    margin: 0;
-    font-weight: bold;
-}
-
-.splash-screen.image-failed .splash-overlay p {
-    color: var(--dark-color);
-    text-shadow: none;
-}
-
-/* ============================================
-   Main Content
-   ============================================ */
-
-.main-content {
-    opacity: 1;
-    transition: opacity 0.5s ease;
-    width: 100%;
-}
-
-.main-content.hidden {
-    opacity: 0;
-    pointer-events: none;
-    display: none;
-}
-
-/* ============================================
-   Invitation Section - Full Screen Mobile
-   ============================================ */
-
-.invitation {
-    padding: 0;
-    background: transparent;
-    min-height: 100vh;
+.main-photo-section {
+    width: min(100%, 460px);
     display: flex;
-    align-items: center;
     justify-content: center;
+    margin-top: 0;
 }
 
-.invitation-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: var(--phone-photo-width);
-    height: auto;
-    margin: 0 auto;
-}
-
-.invitation-image {
+.main-photo {
     width: 100%;
-    height: var(--phone-photo-height);
-    border-radius: 0;
-    box-shadow: none;
-    transition: var(--transition);
+    max-height: 62vh;
     object-fit: contain;
     object-position: top;
 }
 
-.invitation-image:hover {
-    transform: none;
-    box-shadow: none;
+.main-menu {
+    width: min(100%, 460px);
+    margin-top: 0.8rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
 }
 
-.invitation-qr {
-    width: 100%;
-    background-color: #ede6d6;
-    border-top: 1px solid #c9b078;
-    padding: 1.5rem 1rem 2rem;
+.menu-button,
+.back-home {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 0.85rem 1rem;
+    border-radius: var(--border-radius);
+    color: #fff;
+    background: linear-gradient(135deg, var(--primary-color), #a01428);
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    transition: var(--transition);
+}
+
+.menu-button:hover,
+.back-home:hover {
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   Shared sub-pages style
+   ============================================ */
+
+.sub-page {
+    min-height: 100vh;
+    width: min(100%, 900px);
+    margin: 0 auto;
+    padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    gap: 1.25rem;
+}
+
+.sub-page h1 {
     text-align: center;
+    color: var(--invitation-green);
+}
+
+.placeholder-text {
+    text-align: center;
+    font-size: 1.05rem;
+}
+
+.cununie-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1rem;
 }
 
-.invitation-qr-text {
-    font-family: 'Georgia', serif;
-    color: var(--invitation-green);
-    font-size: 1rem;
-    line-height: 1.5;
-    margin: 0;
-}
-
-.invitation-qr-code {
-    width: 130px;
-    height: 130px;
-    object-fit: contain;
-}
-
-/* ============================================
-   About Us Section - Full Screen Photo
-   ============================================ */
-
-.about {
-    padding: 0;
-    background: transparent;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.about-content {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
-    align-items: center;
-    width: var(--phone-photo-width);
-    height: var(--phone-photo-height);
-    max-height: 100vh;
-    margin: 0 auto;
-}
-
-.couple-image {
+.cununie-gallery img {
     width: 100%;
-    height: 100%;
-    border-radius: 0;
-    box-shadow: none;
-    transition: var(--transition);
-    object-fit: contain;
-}
-
-.couple-image:hover {
-    transform: none;
-}
-
-.about-text {
-    display: none;
-}
-
-/* ============================================
-   Gallery Section
-   ============================================ */
-
-.gallery {
-    padding: 60px 0;
-    background: transparent;
-}
-
-.gallery h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 3rem;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.gallery-item {
-    overflow: hidden;
     border-radius: var(--border-radius);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    aspect-ratio: var(--gallery-photo-ratio);
-    max-width: var(--phone-photo-width);
-    margin: 0 auto;
-    background: white;
-    transition: var(--transition);
-}
-
-.gallery-item-transparent {
-    background: transparent;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transition: var(--transition);
-}
-
-.gallery-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.gallery-item:hover img {
-    transform: scale(1.1);
-}
-
-/* ============================================
-   RSVP Form Section
-   ============================================ */
-
-.rsvp-section {
-    padding: 60px 0;
-    background: transparent;
-}
-
-.rsvp-section h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    color: var(--invitation-green);
-    margin-bottom: 3rem;
+    object-fit: cover;
+    background: #fff;
 }
 
 .rsvp-form {
-    max-width: 600px;
+    max-width: 560px;
+    width: 100%;
     margin: 0 auto;
-    background: transparent;
-    padding: 2rem;
+    background: rgba(255, 255, 255, 0.75);
+    padding: 1.2rem;
     border-radius: var(--border-radius);
 }
 
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.45rem;
     font-weight: 600;
     color: var(--invitation-green);
 }
 
 .form-group input,
-.form-group select,
-.form-group textarea {
+.form-group select {
     width: 100%;
     padding: 0.75rem;
     border: 2px solid #ddd;
     border-radius: 5px;
-    font-family: 'Arial', sans-serif;
     font-size: 1rem;
-    transition: var(--transition);
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 5px rgba(196, 30, 58, 0.2);
 }
 
 .btn-submit {
     width: 100%;
-    padding: 1rem;
-    background: linear-gradient(135deg, var(--primary-color), #a01428);
-    color: white;
+    padding: 0.85rem;
     border: none;
     border-radius: 5px;
-    font-size: 1.1rem;
-    font-weight: bold;
+    color: #fff;
+    font-weight: 700;
     cursor: pointer;
-    transition: var(--transition);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    background: linear-gradient(135deg, var(--primary-color), #a01428);
 }
 
-.btn-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(196, 30, 58, 0.3);
-}
-
-.btn-submit:active {
-    transform: translateY(0);
-}
-
-.form-message {
-    margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 5px;
-    text-align: center;
-    display: none;
-    font-weight: 600;
-}
-
-.form-message.success {
-    display: block;
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-}
-
-.form-message.error {
-    display: block;
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
-}
-
-/* ============================================
-   Footer
-   ============================================ */
-
-.footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 0;
-}
-
-.footer-photo-frame {
-    width: var(--phone-photo-width);
-    height: var(--phone-photo-height);
-    max-height: 100vh;
-}
-
-.footer-image {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-/* ============================================
-   Portrait Phone: solid background instead of image
-   ============================================ */
-
-@media (max-width: 768px) and (orientation: portrait) {
-    body {
-        background-image: none;
-        background-color: #f8f1e7;
-    }
-}
-
-/* ============================================
-   Mobile Optimization (Vertical/Portrait)
-   ============================================ */
-
-@media (max-width: 768px) {
-    body {
-        font-size: 16px;
-    }
-
-    .splash-overlay p {
-        font-size: 1.1rem;
-    }
-
-    .invitation {
-        min-height: 100vh;
-    }
-
-    .about {
-        min-height: 100vh;
-    }
-
-    h2 {
-        font-size: 2rem !important;
-    }
-
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-@media (max-width: 480px) {
-    html, body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    .splash-screen {
-        height: 100vh;
-    }
-
-    .splash-overlay p {
-        font-size: 1rem;
-        padding: 1rem;
-    }
-
-    .invitation {
-        min-height: 100vh;
-        padding: 0;
-    }
-
-    .about {
-        min-height: 100vh;
-        padding: 0;
-    }
-
-    h2 {
-        font-size: 1.5rem !important;
-        padding: 0 1rem;
-    }
-
-    .rsvp-form {
-        padding: 1.5rem;
-    }
-
-}
-
-/* ============================================
-   Landscape Mode (Mobile)
-   ============================================ */
-
-@media (max-height: 600px) {
-    .splash-screen {
-        height: 100vh;
-    }
-
-    .splash-content,
-    .invitation-image,
-    .about-content,
-    .footer-photo-frame {
-        height: var(--phone-photo-landscape-height);
-    }
+.back-home {
+    max-width: 280px;
+    margin: 0.5rem auto 0;
 }

@@ -413,11 +413,11 @@ body {
         bottom: max(0.55rem, calc(env(safe-area-inset-bottom) + 0.2rem));
         width: auto;
         max-width: 250px;
-        transform: translateY(30%);
+        transform: translateY(25%);
     }
 
     .invitation-back:hover {
-        transform: translateY(calc(30% - 2px));
+        transform: translateY(calc(25% - 2px));
     }
 
     @supports (height: 100svh) {

@@ -230,7 +230,7 @@ body {
 }
 
 .invitation-page-body {
-    background: #000;
+    background: #f3e8d8;
 }
 
 .invitation-page {
@@ -408,11 +408,16 @@ body {
         transform-origin: center center;
     }
 
-    /* Keep button style/size as main (menu-button style), move a bit up to image lower edge */
+    /* Keep button style/size as main (menu-button style), move down by ~50% of button size */
     .invitation-back {
-        bottom: max(1.1rem, calc(env(safe-area-inset-bottom) + 0.75rem));
+        bottom: max(0.55rem, calc(env(safe-area-inset-bottom) + 0.2rem));
         width: auto;
         max-width: 250px;
+        transform: translateY(50%);
+    }
+
+    .invitation-back:hover {
+        transform: translateY(calc(50% - 2px));
     }
 
     @supports (height: 100svh) {

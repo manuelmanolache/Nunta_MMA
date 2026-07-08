@@ -50,9 +50,7 @@ body {
 .splash-screen {
     position: fixed;
     inset: 0;
-    width: 100%;
     min-height: 100vh;
-    min-height: 100svh;
     display: none;
     overflow: hidden;
     cursor: pointer;
@@ -76,7 +74,6 @@ body {
 .splash-content {
     width: 100%;
     min-height: 100vh;
-    min-height: 100svh;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -110,7 +107,6 @@ body {
 
 .main-page {
     min-height: 100vh;
-    min-height: 100svh;
     position: relative;
     overflow: hidden;
     padding: 0;
@@ -227,13 +223,21 @@ body {
 
 .sub-page {
     min-height: 100vh;
-    min-height: 100svh;
     width: min(100%, 900px);
     margin: 0 auto;
     padding: clamp(1.25rem, 4vw, 2rem) 1rem;
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+}
+
+@supports (min-height: 100svh) {
+    .splash-screen,
+    .splash-content,
+    .main-page,
+    .sub-page {
+        min-height: 100svh;
+    }
 }
 
 .placeholder-text {

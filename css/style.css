@@ -230,7 +230,7 @@ body {
 }
 
 .invitation-page-body {
-    background: #000;
+    background: #f3e8d8;
 }
 
 .invitation-page {
@@ -268,6 +268,10 @@ body {
     .sub-page,
     .invitation-page {
         min-height: 100svh;
+    }
+
+    .invitation-full-image {
+        height: 100svh;
     }
 }
 
@@ -334,6 +338,44 @@ body {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
 }
 
+/* Desktop-only fit: show full image and fill side space with themed background */
+@media (min-width: 1024px) {
+    .splash-screen,
+    .main-page,
+    .invitation-page {
+        background-color: #f3e8d8;
+        background-image: url('../images/photo.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .splash-photo,
+    .main-photo,
+    .invitation-full-image {
+        object-fit: contain;
+        object-position: center;
+    }
+
+    .main-menu {
+        bottom: clamp(0.5rem, 2vh, 1rem);
+        row-gap: 0.35rem;
+        column-gap: clamp(0.6rem, 2vw, 1.1rem);
+    }
+
+    .main-menu .menu-button {
+        max-width: 190px;
+        padding: 0.4rem 0.6rem;
+        min-height: 34px;
+        font-size: 0.8rem;
+    }
+
+    .enter-text {
+        font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+        margin-bottom: 0.5rem;
+    }
+}
+
 @media (max-width: 640px) {
     .main-page,
     .sub-page {
@@ -351,11 +393,41 @@ body {
         font-size: 0.8rem;
     }
 
-    .back-home {
-        max-width: var(--main-menu-mobile-btn-max-width);
-        padding: 0.45rem 0.55rem;
-        min-height: 34px;
-        font-size: 0.8rem;
+    /* Mobile invitation only: slightly larger image while preserving one-screen fit */
+    .invitation-page {
+        min-height: 100vh;
+        align-items: center;
+    }
+
+    .invitation-full-image {
+        width: 100%;
+        height: 100vh;
+        object-fit: contain;
+        object-position: center;
+        transform: scale(1.05);
+        transform-origin: center center;
+    }
+
+    /* Keep button style/size as main (menu-button style), moved 15% up from previous position */
+    .invitation-back {
+        bottom: max(0.55rem, calc(env(safe-area-inset-bottom) + 0.2rem));
+        width: auto;
+        max-width: 250px;
+        transform: translateY(25%);
+    }
+
+    .invitation-back:hover {
+        transform: translateY(calc(25% - 2px));
+    }
+
+    @supports (height: 100svh) {
+        .invitation-page {
+            min-height: 100svh;
+        }
+
+        .invitation-full-image {
+            height: 100svh;
+        }
     }
 }
 

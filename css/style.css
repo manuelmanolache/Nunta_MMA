@@ -267,12 +267,13 @@ body {
     position: fixed;
     left: 50%;
     bottom: clamp(0.75rem, 3vh, 1.75rem);
-    transform: translateX(-50%);
+    --invitation-back-transform: translateX(-50%);
+    transform: var(--invitation-back-transform);
     z-index: 1;
 }
 
 .invitation-back:hover {
-    transform: translateX(-50%) translateY(-2px);
+    transform: var(--invitation-back-transform) translateY(-2px);
 }
 
 @supports (min-height: 100svh) {

@@ -27,7 +27,6 @@
       padding: 24px;
     }
 
-    /* CARD COMPLET TRANSPARENT */
     .card {
       width: 100%;
       max-width: 560px;
@@ -36,7 +35,6 @@
       border-radius: 16px;
       padding: 24px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-      backdrop-filter: none;
     }
 
     h1 {
@@ -57,7 +55,6 @@
       text-shadow: 0 1px 4px rgba(0,0,0,0.45);
     }
 
-    /* INPUTURI OPACE (NU TRANSPARENTE) */
     input[type="text"],
     input[type="number"] {
       width: 100%;
@@ -68,13 +65,6 @@
       padding: 10px 12px;
       font-size: 15px;
       outline: none;
-    }
-
-    input::placeholder { color: #777; }
-
-    input:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(183, 138, 74, 0.25);
     }
 
     .section-title {
@@ -90,12 +80,11 @@
       margin-bottom: 10px;
     }
 
-    /* SELECTII OPACE (NU TRANSPARENTE) */
     .radio-item {
       display: flex;
       align-items: center;
       gap: 10px;
-      background: #ffffff;
+      background: #fff;
       border: 1px solid #d9d9d9;
       border-radius: 10px;
       padding: 10px 12px;
@@ -117,10 +106,7 @@
       font-size: 15px;
       font-weight: 700;
       cursor: pointer;
-      transition: transform 0.04s ease, opacity 0.2s ease, background 0.2s ease;
     }
-
-    button:active { transform: translateY(1px); }
 
     .btn-yes { background: var(--accent); }
     .btn-yes:hover { background: var(--accent-dark); }
@@ -156,7 +142,6 @@
         <input type="radio" name="persoane" value="Vin singur" checked />
         <span>Vin singur</span>
       </label>
-
       <label class="radio-item">
         <input type="radio" name="persoane" value="Vin însoțit(ă)" />
         <span>Vin însoțit(ă)</span>
@@ -177,7 +162,7 @@
   </div>
 
   <script>
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxfXKi3MvFIPITCV8fqwkEYzRUbwsl7Vrkm4wU240qjbM_BReL4-v36DXl5avVTZOu3/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxKL8zGiov-qYBiE9F0OfD9Eg0yOapWTIk9pcnk8MzaPuBwBjR7E3ZEtxCgkjSOYgA/exec";
 
     const numeEl = document.getElementById("nume");
     const nrCopiiEl = document.getElementById("nrCopii");
@@ -200,19 +185,14 @@
       const persoane = getPersoaneValue();
       const nrCopii = nrCopiiEl.value ? Number(nrCopiiEl.value) : "";
 
-      if (!nume) {
-        setStatus("Trimitere eșuată, contactați direct prin telefon la numerele din invitație", false);
-        return;
-      }
-
-      if (nrCopii !== "" && (isNaN(nrCopii) || nrCopii < 0)) {
+      if (!nume || (nrCopii !== "" && (isNaN(nrCopii) || nrCopii < 0))) {
         setStatus("Trimitere eșuată, contactați direct prin telefon la numerele din invitație", false);
         return;
       }
 
       const payload = {
         numePrenume: nume,
-        raspuns: raspuns,
+        raspuns,
         numarPersoane: persoane,
         meniuCopii: nrCopii === "" ? "" : nrCopii
       };
@@ -221,29 +201,26 @@
         btnConfirm.disabled = true;
         btnRefuz.disabled = true;
 
+        const body = new URLSearchParams();
+        body.append("payload", JSON.stringify(payload));
+
         const res = await fetch(APPS_SCRIPT_URL, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
+          headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+          body: body.toString()
         });
 
-        const raw = await res.text();
-        let data = {};
-        try {
-          data = JSON.parse(raw);
-        } catch (_) {
-          data = { success: false };
-        }
+        const text = await res.text();
+        let data = null;
+        try { data = JSON.parse(text); } catch (_) {}
 
-        if (!data.success) {
-          throw new Error("save_failed");
-        }
+        if (!data || !data.success) throw new Error("send_failed");
 
         setStatus("Trimitere efectuată", true);
         numeEl.value = "";
         nrCopiiEl.value = "";
         document.querySelector('input[name="persoane"][value="Vin singur"]').checked = true;
-      } catch (err) {
+      } catch (e) {
         setStatus("Trimitere eșuată, contactați direct prin telefon la numerele din invitație", false);
       } finally {
         btnConfirm.disabled = false;
